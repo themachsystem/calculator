@@ -99,7 +99,7 @@ class MainViewController: UIViewController {
      *
      * - parameter operation: The maths operation to be processed
      */
-    private func make(operation: Operation) {
+    func make(operation: Operation) {
         if currentOperation != .Null {
             if numberOnScreen != "" {
                 rightOperand = numberOnScreen
