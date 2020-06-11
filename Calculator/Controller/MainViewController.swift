@@ -76,8 +76,12 @@ class MainViewController: UIViewController {
 
     @IBAction func dotTapped(_ sender: RoundButton) {
         if numberOnScreen.count <= 7 {
-            numberOnScreen += "."
-            resultLabel.text = numberOnScreen
+            if numberOnScreen.contains(".") {
+                
+            } else {
+                numberOnScreen += "."
+                resultLabel.text = numberOnScreen
+            }
         }
     }
     
@@ -113,6 +117,9 @@ class MainViewController: UIViewController {
                     result = "\(Double(leftOperand)! / Double(rightOperand)!)"
                 }
                 leftOperand = result
+                if Double(result)!.truncatingRemainder(dividingBy: 1) == 0 {
+                    result = "\(Int(Double(result)!))"
+                }
                 resultLabel.text = result
             }
             currentOperation = operation
