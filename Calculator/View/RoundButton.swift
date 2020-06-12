@@ -10,17 +10,20 @@ import UIKit
 @IBDesignable
 class RoundButton: UIButton {
 
+    /**
+     * If true, the border corner will be rounded.
+     */
     @IBInspectable var rounded:Bool = false {
         didSet {
             if rounded {
-                layer.cornerRadius = frame.height / 2
+                layer.cornerRadius = 5.0
             }
         }
     }
 
     override func prepareForInterfaceBuilder() {
         if rounded {
-            layer.cornerRadius = frame.height / 2
+            layer.cornerRadius = 5.0
         }
     }
 }
