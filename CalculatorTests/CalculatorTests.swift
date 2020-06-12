@@ -77,4 +77,12 @@ class CalculatorTests: XCTestCase {
         }
         XCTAssertEqual(sut.result, expectedResult)
     }
+    
+    func testCalculator_DivideByZero() {
+        sut.numberOnScreen = "1"
+        sut.make(operation: .Divide)
+        sut.numberOnScreen = "0"
+        sut.make(operation: sut.currentOperation)
+        XCTAssertEqual(sut.result, "Error")
+    }
 }
