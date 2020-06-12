@@ -100,7 +100,15 @@ class MainViewController: UIViewController {
      * - parameter operation: The maths operation to be processed
      */
     func make(operation: Operation) {
+        guard let _ = Double(numberOnScreen) else {
+            return
+        }
         if currentOperation != .Null {
+            guard let _ = Double(leftOperand) else {
+                result = "Error"
+                resultLabel.text = result
+                return
+            }
             if numberOnScreen != "" {
                 rightOperand = numberOnScreen
                 numberOnScreen = ""
@@ -114,10 +122,15 @@ class MainViewController: UIViewController {
                     result = "\(Double(leftOperand)! * Double(rightOperand)!)"
                 }
                 else if currentOperation == .Divide {
-                    result = "\(Double(leftOperand)! / Double(rightOperand)!)"
+                    if Int(rightOperand)!.isMultiple(of: 0)  {
+                        result = "Error"
+                    }
+                    else {
+                        result = "\(Double(leftOperand)! / Double(rightOperand)!)"
+                    }
                 }
                 leftOperand = result
-                if Double(result)!.truncatingRemainder(dividingBy: 1) == 0 {
+                if let resultInNumber = Double(result), resultInNumber.truncatingRemainder(dividingBy: 1) == 0 {
                     result = "\(Int(Double(result)!))"
                 }
                 resultLabel.text = result
